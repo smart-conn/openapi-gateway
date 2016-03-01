@@ -45,6 +45,26 @@ OpenAPI Gateway 提供两种接口：
 
 代理调用设备功能。根据转换规则拼装报文。
 
+#### 参数
+
+root：
+
+key     | value  | description
+------- | ------ | -------------------
+target  | object | 调用的目标。参考下面的说明
+payload | object | 具体的请求参数。是个 JSONObject
+
+target：
+
+key        | value  | description
+---------- | ------ | --------------------
+sipAccount | string | 设备网关在 IMS 服务注册的 帐号
+busName    | string | 根据帐号获取的 busName。需要利用其他接口查询
+path       | string | 被调用方法的对象路径
+interface  | string | 被调用方法的 interface
+member     | string | 被调用方法的方法名
+
+
 ### 服务接入接口（HTTP）: PUT /service/{serviceName}/instance
 
 第三方的服务通过这个接口告知 OAG，服务实例的地址
@@ -77,4 +97,8 @@ port    | string | 服务端口号
 
 ### Exchage
 
+rpc：
+* 设备反向代理接口：device_reverse_proxy
+
+topic：
 * 设备状态更新接口：status.gateway.{sipAccount}
